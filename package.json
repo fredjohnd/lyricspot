@@ -1,0 +1,34 @@
+{
+  "name": "lyricspot",
+  "version": "1.0.0",
+  "description": "A lyrics displayer for Spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredjohnd/lyricspot.git"
+  },
+  "keywords": [
+    "lyrics",
+    "spotify",
+    "player",
+    "music"
+  ],
+  "author": "Fred Duarte",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/fredjohnd/lyricspot/issues"
+  },
+  "homepage": "https://github.com/fredjohnd/lyricspot#readme",
+  "dependencies": {
+    "eslint": "^3.14.1",
+    "express": "^4.14.0",
+    "node-fetch": "^1.7.3",
+    "pug": "^2.0.0-rc.4",
+    "requirejs": "^2.3.2",
+    "socket.io": "^1.7.2",
+    "spotify-web-helper": "git+https://github.com/onetune/spotify-web-helper.git"
+  }
+}
