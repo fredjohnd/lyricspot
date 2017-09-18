@@ -3,11 +3,18 @@ html
 	head
 		title= title
 		link(rel="stylesheet" href="styles.css")
+		link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu:400,700")
 	body
-		div= lyrics
+		.container
+			unless spotifyIsReady
+				h1= "Searching for spotify"
+			else
+				h1= lyrics.trackName
+			.lyrics= lyrics.lyrics
 		script(src="socket.io/socket.io.js")
 		script(type="text/javascript").
 			var socket = io();
 			socket.on('lyric_received', function(lyrics) {
-				document.querySelector('div').innerText = lyrics;
+				document.querySelector('h1').innerText = lyrics.trackName;
+				document.querySelector('.lyrics').innerText = lyrics.lyrics;
 			});

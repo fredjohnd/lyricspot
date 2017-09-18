@@ -1,11 +1,11 @@
 const SpotifyWebHelper = require('spotify-web-helper');
-const spotify = SpotifyWebHelper();
+const spotify = SpotifyWebHelper({port:4381});
 const ws = require('../services/ws');
 const lyricsFetcher = require('../services/lyricsFetcher');
 
+var spotifyIsReady = false;
 var currentTrack;
-var currentTrackName;
-var currentLyrics = 'Searching for spotify..';
+var currentLyrics = {};
 
 var getTrackInformation = function(track) {
     if (!track) return 'No track';
@@ -14,6 +14,7 @@ var getTrackInformation = function(track) {
 
 spotify.player.on('ready', () => {
     console.log('Spotify Ready');
+    spotifyIsReady = true;
 
     spotify.player.on('track-will-change', track => {
         currentTrack = track;
@@ -21,13 +22,15 @@ spotify.player.on('ready', () => {
         let trackName = getTrackInformation(track);
         currentTrackName = trackName;
         lyricsFetcher.search(trackName).then(lyrics => {
-            currentLyrics = lyrics;
-            ws.lyricsReceived(lyrics);
+            currentLyrics = {trackName: trackName, lyrics: lyrics};
+            ws.lyricsReceived(currentLyrics);
+        }).catch(error => {
+            console.log(error);
         })
 	});
 
 });
 
 exports.index = (req, res) => {
-    res.render('index.pug', { title: 'Lyricspot', trackName: currentTrackName, lyrics: currentLyrics });
+    res.render('index.pug', {spotifyIsReady: spotifyIsReady, lyrics: {trackName: currentLyrics.trackName, lyrics: currentLyrics.lyrics }});
 }
