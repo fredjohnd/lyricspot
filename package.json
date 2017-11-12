@@ -28,7 +28,7 @@
     "node-fetch": "^1.7.3",
     "pug": "^2.0.0-rc.4",
     "requirejs": "^2.3.2",
-    "socket.io": "^1.7.2",
+    "socket.io": "^2.0.0",
     "spotify-web-helper": "git+https://github.com/onetune/spotify-web-helper.git"
   }
 }
