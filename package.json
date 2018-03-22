@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/fredjohnd/lyricspot#readme",
   "dependencies": {
-    "eslint": "^3.14.1",
+    "eslint": "^4.18.2",
     "express": "^4.14.0",
     "node-fetch": "^1.7.3",
     "pug": "^2.0.0-rc.4",
